@@ -206,12 +206,38 @@ public class lab4 {
             System.out.println("The entered flight number is not available");
         }
     }
+    static void deletingReservation()
+    {
+        try
+        {
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        Node point = l_list1.head;
+        Node rev = null;
+        if(point.data.equals(name))
+        {
+            l_list1.head = point.next;
+        }
+        else {
+            while (!(point.data.equals(name))) {
+                rev = point;
+                point = point.next;
+            }
+            rev.next = point.next;
+        }
+    }catch (NullPointerException e)
+        {
+            return;
+        }
+    }
+    
         public static void main (String[]args){
         while (true) {
             System.out.println("1. Book a reservation");
             System.out.println("2. List of passengers");
             System.out.println("3. Number of passengers");
-            System.out.println("4. Exit");
+            System.out.println("4. Cancel a reservation");
+            System.out.println("5. Exit");
             System.out.println("Choose an option: ");
             int u = sc.nextInt();
             if (u == 1){
@@ -224,9 +250,13 @@ public class lab4 {
                 printSize();
             }
             else if (u==4){
+                deletingReservation();
+            }
+            else if (u==5){
                 System.out.println("Terminated");
                 break;
             }
+            
             else {
                 System.out.println("Wrong Input");
             }
